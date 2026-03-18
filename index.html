@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe vs Computer</title>
 
-    <!-- Open Graph Meta Tags -->
+    <!-- Open Graph Meta Tags for social preview -->
     <meta property="og:title" content="Play Tic-Tac-Toe vs AI!">
     <meta property="og:description" content="Challenge yourself and play Tic-Tac-Toe against the computer!">
     <meta property="og:image" content="https://jegerloor121.github.io/Tic-tac-toe/jeger.jpg">
@@ -59,25 +59,22 @@
             background-color: #4CAF50;
             color: white;
             border-radius: 5px;
+            transition: 0.3s;
         }
         button:hover {
             background-color: #45a049;
         }
         #contact-info {
             margin-top: 30px;
-            font-size: 1.1rem;
         }
-        #contact-info a {
-            color: #ffd700;
-            text-decoration: none;
-        }
-        #contact-info a:hover {
-            text-decoration: underline;
+        #contact-info button {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <h1>JEGIRL vs A.I</h1>
+
     <div class="board" id="board">
         <div class="cell" data-index="0"></div>
         <div class="cell" data-index="1"></div>
@@ -89,11 +86,12 @@
         <div class="cell" data-index="7"></div>
         <div class="cell" data-index="8"></div>
     </div>
+
     <button onclick="resetGame()">Restart Game</button>
 
     <div id="contact-info">
-        <p>Follow me on <a href="https://www.facebook.com/jegerloor" target="_blank">Facebook</a></p>
-        <p>Contact me: <a href="tel:09554863557">+63 9554863557</a></p>
+        <button onclick="window.open('https://www.facebook.com/jegerloor','_blank')">Facebook</button>
+        <button onclick="window.location.href='tel:+639XXXXXXXXX'">Contact Me</button>
     </div>
 
     <script>
