@@ -24,11 +24,14 @@
         background-repeat: no-repeat;
     }
 
-    body {
+    /* Center container for title, board, restart */
+    .main-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        min-height: 100vh; /* full viewport height */
+        padding-bottom: 80px; /* space for footer buttons */
         text-align: center;
     }
 
@@ -80,7 +83,7 @@
         background-color: #45a049;
     }
 
-    /* Footer for contact buttons */
+    /* Footer buttons fixed at bottom */
     #contact-info {
         position: fixed;
         bottom: 20px;
@@ -96,22 +99,26 @@
 </style>
 </head>
 <body>
-<h1>JEGIRL vs A.I</h1>
 
-<div class="board" id="board">
-    <div class="cell" data-index="0"></div>
-    <div class="cell" data-index="1"></div>
-    <div class="cell" data-index="2"></div>
-    <div class="cell" data-index="3"></div>
-    <div class="cell" data-index="4"></div>
-    <div class="cell" data-index="5"></div>
-    <div class="cell" data-index="6"></div>
-    <div class="cell" data-index="7"></div>
-    <div class="cell" data-index="8"></div>
+<div class="main-container">
+    <h1>JEGIRL vs A.I</h1>
+
+    <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+
+    <button onclick="resetGame()">Restart Game</button>
 </div>
 
-<button onclick="resetGame()">Restart Game</button>
-
+<!-- Footer buttons -->
 <div id="contact-info">
     <button onclick="window.open('https://www.facebook.com/jegerloor','_blank')">Facebook</button>
     <button onclick="window.location.href='tel:+639XXXXXXXXX'">Contact Me</button>
@@ -182,5 +189,6 @@ function resetGame() {
 
 cells.forEach(cell => cell.addEventListener('click', handleClick));
 </script>
+
 </body>
 </html>
