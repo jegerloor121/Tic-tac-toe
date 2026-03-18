@@ -1,78 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe vs Computer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic-Tac-Toe vs Computer</title>
 
-    <!-- Open Graph Meta Tags for social preview -->
-    <meta property="og:title" content="Play Tic-Tac-Toe vs AI!">
-    <meta property="og:description" content="Challenge yourself and play Tic-Tac-Toe against the computer!">
-    <meta property="og:image" content="https://jegerloor121.github.io/Tic-tac-toe/jeger.jpg">
-    <meta property="og:url" content="https://jegerloor121.github.io/Tic-tac-toe/">
-    <meta property="og:type" content="website">
+<!-- Open Graph Meta Tags for social preview -->
+<meta property="og:title" content="Play Tic-Tac-Toe vs AI!">
+<meta property="og:description" content="Challenge yourself and play Tic-Tac-Toe against the computer!">
+<meta property="og:image" content="https://jegerloor121.github.io/Tic-tac-toe/jeger.jpg">
+<meta property="og:url" content="https://jegerloor121.github.io/Tic-tac-toe/">
+<meta property="og:type" content="website">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('jeger.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-        }
-        h1 {
-            color: #4CAF50;
-            text-shadow: 1px 1px 3px black;
-            margin-top: 20px;
-        }
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-gap: 5px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .cell {
-            width: 100px;
-            height: 100px;
-            background-color: rgba(255,255,255,0.8); 
-            border: 2px solid #4CAF50;
-            font-size: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: black;
-            transition: background-color 0.2s;
-        }
-        .cell:hover {
-            background-color: rgba(200, 255, 200, 0.9);
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #contact-info {
-            margin-top: 30px;
-        }
-        #contact-info button {
-            margin-top: 10px;
-        }
-    </style>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('jeger.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        text-align: center;
+    }
+
+    /* Center content container */
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding-bottom: 100px; /* space for footer buttons */
+    }
+
+    h1 {
+        color: #4CAF50;
+        text-shadow: 1px 1px 3px black;
+        margin-top: 20px;
+    }
+
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-gap: 5px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .cell {
+        width: 100px;
+        height: 100px;
+        background-color: rgba(255,255,255,0.8);
+        border: 2px solid #4CAF50;
+        font-size: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: black;
+        transition: background-color 0.2s;
+    }
+
+    .cell:hover {
+        background-color: rgba(200, 255, 200, 0.9);
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* Footer buttons fixed at bottom */
+    #contact-info {
+        position: fixed;
+        bottom: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+</style>
 </head>
 <body>
+
+<div class="main-container">
     <h1>JEGIRL vs A.I</h1>
 
     <div class="board" id="board">
@@ -88,76 +112,79 @@
     </div>
 
     <button onclick="resetGame()">Restart Game</button>
+</div>
 
-    <div id="contact-info">
-        <button onclick="window.open('https://www.facebook.com/jegerloor','_blank')">Facebook</button>
-        <button onclick="window.location.href='tel:+639XXXXXXXXX'">Contact Me</button>
-    </div>
+<!-- Footer buttons -->
+<div id="contact-info">
+    <button onclick="window.open('https://www.facebook.com/jegerloor','_blank')">Facebook</button>
+    <button onclick="window.location.href='tel:+639XXXXXXXXX'">Contact Me</button>
+</div>
 
-    <script>
-        const cells = document.querySelectorAll('.cell');
-        let gameState = ["", "", "", "", "", "", "", "", ""];
-        const winCombos = [
-            [0,1,2],[3,4,5],[6,7,8],
-            [0,3,6],[1,4,7],[2,5,8],
-            [0,4,8],[2,4,6]
-        ];
-        let gameOver = false;
+<script>
+const cells = document.querySelectorAll('.cell');
+let gameState = ["", "", "", "", "", "", "", "", ""];
+const winCombos = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+];
+let gameOver = false;
 
-        function handleClick(e) {
-            if(gameOver) return;
+function handleClick(e) {
+    if(gameOver) return;
 
-            const index = e.target.dataset.index;
-            if(gameState[index] !== "") return;
+    const index = e.target.dataset.index;
+    if(gameState[index] !== "") return;
 
-            // Player move
-            gameState[index] = "X";
-            e.target.textContent = "X";
+    // Player move
+    gameState[index] = "X";
+    e.target.textContent = "X";
 
-            if(checkWinner("X")) { 
-                setTimeout(() => alert("You win! 🎉"), 100); 
-                gameOver = true;
-                return;
-            } else if(gameState.every(cell => cell !== "")) {
-                setTimeout(() => alert("It's a tie! 🤝"), 100);
-                gameOver = true;
-                return;
-            }
+    if(checkWinner("X")) { 
+        setTimeout(() => alert("You win! 🎉"), 100); 
+        gameOver = true;
+        return;
+    } else if(gameState.every(cell => cell !== "")) {
+        setTimeout(() => alert("It's a tie! 🤝"), 100);
+        gameOver = true;
+        return;
+    }
 
-            // Computer move
-            setTimeout(computerMove, 300);
-        }
+    // Computer move
+    setTimeout(computerMove, 300);
+}
 
-        function computerMove() {
-            if(gameOver) return;
+function computerMove() {
+    if(gameOver) return;
 
-            const emptyCells = gameState.map((val,i) => val === "" ? i : null).filter(v => v !== null);
-            if(emptyCells.length === 0) return;
+    const emptyCells = gameState.map((val,i) => val === "" ? i : null).filter(v => v !== null);
+    if(emptyCells.length === 0) return;
 
-            const move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-            gameState[move] = "O";
-            cells[move].textContent = "O";
+    const move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    gameState[move] = "O";
+    cells[move].textContent = "O";
 
-            if(checkWinner("O")) {
-                setTimeout(() => alert("Computer wins! 💻"), 100);
-                gameOver = true;
-            } else if(gameState.every(cell => cell !== "")) {
-                setTimeout(() => alert("It's a tie! 🤝"), 100);
-                gameOver = true;
-            }
-        }
+    if(checkWinner("O")) {
+        setTimeout(() => alert("Computer wins! 💻"), 100);
+        gameOver = true;
+    } else if(gameState.every(cell => cell !== "")) {
+        setTimeout(() => alert("It's a tie! 🤝"), 100);
+        gameOver = true;
+    }
+}
 
-        function checkWinner(player) {
-            return winCombos.some(combo => combo.every(i => gameState[i] === player));
-        }
+function checkWinner(player) {
+    return winCombos.some(combo => combo.every(i => gameState[i] === player));
+}
 
-        function resetGame() {
-            gameState = ["", "", "", "", "", "", "", "", ""];
-            cells.forEach(cell => cell.textContent = "");
-            gameOver = false;
-        }
+function resetGame() {
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    cells.forEach(cell => cell.textContent = "");
+    gameOver = false;
+}
 
-        cells.forEach(cell => cell.addEventListener('click', handleClick));
-    </script>
+cells.forEach(cell => cell.addEventListener('click', handleClick));
+</script>
+
 </body>
 </html>
